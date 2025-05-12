@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        
+        /* Header Styles */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 8vw 12px 8vw;
+            background: #1e1e1e;
+            border-bottom: 1px solid #333;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e23744;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 600px;
+            margin: 0 32px;
+            background: #2d2d2d;
+            border-radius: 8px;
+            padding: 6px 12px;
+            gap: 8px;
+            transition: box-shadow 0.3s ease;
+        }
+        .search-bar:focus-within {
+            box-shadow: 0 0 0 2px #e23744;
+            background: #363636;
+        }
+        .location-input {
+            border: none;
+            background: transparent;
+            font-weight: 500;
+            width: 90px;
+            color: #e23744;
+            outline: none;
+        }
+        .search-input {
+            border: none;
+            background: transparent;
+            flex: 1;
+            outline: none;
+            color: #e0e0e0;
+        }
+        .location-input::placeholder,
+        .search-input::placeholder {
+            color: #9e9e9e;
+        }
+        .auth-links a {
+            margin-left: 18px;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .auth-links a:last-child {
+            color: #e23744;
+        }
+        
+        /* Navigation */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            background: #1e1e1e;
+            padding: 16px 0 0 0;
+        }
+        .nav-item {
+            font-size: 1.1rem;
+            color: #9e9e9e;
+            padding: 8px 18px 12px 18px;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-item.active {
+            color: #e23744;
+            border-bottom: 2px solid #e23744;
+            font-weight: 600;
+        }
+        
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            padding: 18px 0;
+        }
+        .filters button {
+            background: #2d2d2d;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 8px 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #e0e0e0;
+        }
+        
+        /* Search Results Section */
+        .search-results {
+            padding: 32px 8vw;
+        }
+        .search-results h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .search-results p {
+            color: #9e9e9e;
+            margin-bottom: 24px;
+        }
+        
+        /* Restaurant Cards */
+        .restaurant-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .restaurant-card {
+            width: 100%;
+            cursor: pointer;
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .restaurant-card:hover {
+            transform: scale(1.03);
+        }
+        .img-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+        }
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .rating {
+            background: #24963f;
+            color: #fff;
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+        .restaurant-info {
+            padding: 16px;
+            width: 100%;
+        }
+        .restaurant-info h3 {
+            margin: 0 0 4px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .restaurant-info p {
+            margin: 0 0 8px 0;
+            color: #9e9e9e;
+            font-size: 0.95rem;
+        }
+        .restaurant-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+        .price-time {
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+        .offer {
+            color: #24963f;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        /* No Results Section */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none; /* Hide by default */
+        }
+        .no-results img {
+            width: 200px;
+            margin-bottom: 24px;
+        }
+        .no-results h2 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .no-results p {
+            color: #9e9e9e;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+        .browse-button {
+            display: inline-block;
+            background: #e23744;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .browse-button:hover {
+            background: #c62d39;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1e1e1e;
+            margin-top: 48px;
+            padding: 32px 8vw;
+            font-size: 0.95rem;
+            color: #9e9e9e;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+        }
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e23744;
+        }
+        .footer-selects select {
+            margin-left: 12px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            padding: 24px 0;
+            border-top: 1px solid #333;
+        }
+        .footer-links h4 {
+            margin-bottom: 16px;
+            color: #e0e0e0;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            font-size: 1.4rem;
+            margin-top: 16px;
+        }
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 24px;
+            font-size: 0.9rem;
+        }
+        
+        /* Toggle Switch for Demonstration */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: #1e1e1e;
+            margin-bottom: 20px;
+        }
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .toggle-switch label {
+            cursor: pointer;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 900px) {
+            .restaurant-cards {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .footer-links {
+                gap: 32px;
+            }
+        }
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-bar {
+                margin: 16px 0;
+            }
+            .auth-links {
+                display: flex;
+                justify-content: center;
+                margin-top: 12px;
+            }
+            .restaurant-cards {
+                grid-template-columns: 1fr;
+            }
+            .main-nav {
+                gap: 16px;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .footer-selects {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .footer-selects select {
+                margin-left: 0;
+            }
+        }
+    </style>
+<body>
+
+
+
+
+        <!-- Header -->
+    <header class="header">
+        <div class="logo">BiteRush</div>
+        <div class="search-bar">
+            <i class="fa fa-map-marker-alt"></i>
+            <input type="text" value="Jabalpur" class="location-input" readonly>
+            <input type="text" value="burger" placeholder="Search for restaurant, cuisine or a dish" class="search-input">
+        </div>
+        <div class="auth-links">
+            <a href="3_a_LOGIN.html">Log in</a>
+            <a href="2_a_REGISTER.html">Sign up</a>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-item active"><i class="fa fa-motorcycle"></i> Delivery</div>
+        <div class="nav-item"><i class="fa fa-utensils"></i> Dining Out</div>
+        <div class="nav-item"><i class="fa fa-glass-cheers"></i> Nightlife</div>
+    </nav>
+    
+    <!-- Filters -->
+    <div class="filters">
+        <button>Rating: 4.0+</button>
+        <button>Pure Veg</button>
+        <button>Cuisines <i class="fa fa-chevron-down"></i></button>
+        <button>Sort By <i class="fa fa-chevron-down"></i></button>
+    </div>
+    
+    <!-- Toggle for demonstration purposes -->
+    <div class="toggle-container">
+        <div class="toggle-switch">
+            <label for="results-toggle">Toggle between results and no results:</label>
+            <input type="checkbox" id="results-toggle" onchange="toggleResults()">
+        </div>
+    </div>
+    
+    <!-- Search Results Section -->
+    <section class="search-results" id="results-section">
+        <h2>Burgers in Jabalpur</h2>
+        <p>9 results found</p>
+    
+<% items.forEach(item => { %>
+  <div class="restaurant-card" onclick="window.location.href='ORDER--.html'">
+    <div class="img-container">
+      <img src="<%= item.image %>" alt="<%= item.name %>">
+      <div class="rating"><%= item.rating %> ★</div>
+    </div>
+    <div class="restaurant-info">
+      <h3><%= item.name %></h3>
+      <p><%= item.description %></p>
+      <div class="restaurant-detail">
+        <span class="price-time"><%= item.priceTime %></span>
+        <span class="offer"><%= item.offer %></span>
+      </div>
+    </div>
+  </div>
+<% }) %>
+
+
+</body>
+</html>

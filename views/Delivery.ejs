@@ -14,11 +14,21 @@
         <div class="search-bar">
             <i class="fa fa-map-marker-alt"></i>
             <input type="text" value="Jabalpur" class="location-input" readonly>
-            <input type="text" placeholder="Search for restaurant, cuisine or a dish" class="search-input">
+
+            <!-- Input -->
+            <form id="searchForm" method="post" action="/Search">
+                <input type="text" name="search" placeholder="Search..." class="search-input" />
+            </form>
         </div>
         <div class="auth-links">
-            <a href="/Login">Log in</a>
-            <a href="/Register">Sign up</a>
+            <% if (locals.user) { %>
+                <!-- If the user is logged in, show the Logout button -->
+                <a href="/Logout">Logout</a>
+            <% } else { %>
+                <!-- If the user is not logged in, show the Login and Sign Up buttons -->
+                <a href="/Login">Log in</a>
+                <a href="/Register">Sign up</a>
+            <% } %>
         </div>
     </header>
     <!-- Navigation -->
@@ -70,84 +80,7 @@
                     </div>
                 </a>
             </div>
-            <div class="restaurant-card">
-                <a href="/Order" style="text-decoration: none; color: inherit; display: contents;">
-                    <div class="img-placeholder"></div>
-                    <div class="restaurant-info">
-                        <h3>Traffic Jam Food Junction</h3>
-                        <p>North Indian, Biryani, Chinese</p>
-                        <span>₹400 for one • 40 min</span>
-                        <span class="rating">4.2 ★</span>
-                    </div>
-                </a>
-            </div>
-            <div class="restaurant-card">
-                <a href="/Order" style="text-decoration: none; color: inherit; display: contents;">
-                    <div class="img-placeholder"></div>
-                    <div class="restaurant-info">
-                        <h3>Traffic Jam Food Junction</h3>
-                        <p>North Indian, Biryani, Chinese</p>
-                        <span>₹400 for one • 40 min</span>
-                        <span class="rating">4.2 ★</span>
-                    </div>
-                </a>
-            </div>
-            <div class="restaurant-card">
-                <a href="/Order" style="text-decoration: none; color: inherit; display: contents;">
-                    <div class="img-placeholder"></div>
-                    <div class="restaurant-info">
-                        <h3>Traffic Jam Food Junction</h3>
-                        <p>North Indian, Biryani, Chinese</p>
-                        <span>₹400 for one • 40 min</span>
-                        <span class="rating">4.2 ★</span>
-                    </div>
-                </a>
-            </div>
-            <div class="restaurant-card">
-                <a href="/Order" style="text-decoration: none; color: inherit; display: contents;">
-                    <div class="img-placeholder"></div>
-                    <div class="restaurant-info">
-                        <h3>Traffic Jam Food Junction</h3>
-                        <p>North Indian, Biryani, Chinese</p>
-                        <span>₹400 for one • 40 min</span>
-                        <span class="rating">4.2 ★</span>
-                    </div>
-                </a>
-            </div>
-            <div class="restaurant-card">
-                <a href="/Order" style="text-decoration: none; color: inherit; display: contents;">
-                    <div class="img-placeholder"></div>
-                    <div class="restaurant-info">
-                        <h3>Traffic Jam Food Junction</h3>
-                        <p>North Indian, Biryani, Chinese</p>
-                        <span>₹400 for one • 40 min</span>
-                        <span class="rating">4.2 ★</span>
-                    </div>
-                </a>
-            </div>
-            <div class="restaurant-card">
-                <a href="/Order" style="text-decoration: none; color: inherit; display: contents;">
-                    <div class="img-placeholder"></div>
-                    <div class="restaurant-info">
-                        <h3>Traffic Jam Food Junction</h3>
-                        <p>North Indian, Biryani, Chinese</p>
-                        <span>₹400 for one • 40 min</span>
-                        <span class="rating">4.2 ★</span>
-                    </div>
-                </a>
-            </div>
-            <div class="restaurant-card">
-                <a href="/Order" style="text-decoration: none; color: inherit; display: contents;">
-                    <div class="img-placeholder"></div>
-                    <div class="restaurant-info">
-                        <h3>Traffic Jam Food Junction</h3>
-                        <p>North Indian, Biryani, Chinese</p>
-                        <span>₹400 for one • 30 min</span>
-                        <span class="rating">4.2 ★</span>
-                    </div>
-                </a>
-            </div>
-            
+            <!-- Additional restaurant cards go here -->
         </div>
     </section>
     <!-- Explore Options -->

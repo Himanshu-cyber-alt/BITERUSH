@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Page</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Extra styling for search results */
+    .search-container {
+      text-align: center;
+      margin: 40px auto;
+      max-width: 500px;
+    }
+
+    .search-container input {
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .results {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .item-card {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 200px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for items..." />
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <script>
+    const items = [
+      "Cricket Bat",
+      "Football",
+      "Badminton Racket",
+      "Tennis Ball",
+      "Running Shoes",
+      "Basketball",
+      "Yoga Mat",
+      "Skipping Rope",
+      "Gloves",
+      "Hockey Stick"
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const resultsDiv = document.getElementById("results");
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase();
+      resultsDiv.innerHTML = "";
+
+      const filteredItems = items.filter(item => item.toLowerCase().includes(query));
+
+      filteredItems.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "item-card";
+        div.textContent = item;
+        resultsDiv.appendChild(div);
+      });
+
+      if (filteredItems.length === 0 && query.length > 0) {
+        resultsDiv.innerHTML = "<p>No items found.</p>";
+      }
+    });
+  </script>
+</body>
+</html>

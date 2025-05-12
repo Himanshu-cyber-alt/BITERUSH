@@ -12,27 +12,33 @@
     <div class="login-container">
         <h2>Sign Up Account</h2>
 
-        <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Name" required>
-        </div>
+        <!-- Start of form for registration -->
+        <form action="/Register" method="POST">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="Name" placeholder="Name" required>
+            </div>
 
-        <div class="input-group">
-            <i class="fas fa-envelope"></i>
-            <input type="text" placeholder="Email" required>
-        </div>
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="Email" placeholder="Email" required>
+            </div>
 
-        <div class="input-group">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Set Password" required>
-        </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="Password" placeholder="Set Password" required>
+            </div>
 
-        <div class="input-group">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Confirm Password" required>
-        </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="ConfirmPassword" placeholder="Confirm Password" required>
+            </div>
 
-        <a href="/Register"><button class="btn register-btn">Sign Up</button></a>
+            <!-- Sign up button -->
+            <button type="submit" class="btn register-btn">Sign Up</button>
+        </form>
+        <!-- End of form -->
+
     </div>
 
 </body>

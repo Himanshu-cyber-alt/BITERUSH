@@ -16,9 +16,15 @@
             <input type="text" value="Jabalpur" class="location-input" readonly>
             <input type="text" placeholder="Search for restaurant, cuisine or a dish" class="search-input">
         </div>
-        <div class="auth-links">
-            <a href="/Login">Log in</a>
-            <a href="/Register">Sign up</a>
+                <div class="auth-links">
+            <% if (locals.user) { %>
+                <!-- If the user is logged in, show the Logout button -->
+                <a href="/Logout">Logout</a>
+            <% } else { %>
+                <!-- If the user is not logged in, show the Login and Sign Up buttons -->
+                <a href="/Login">Log in</a>
+                <a href="/Register">Sign up</a>
+            <% } %>
         </div>
     </header>
     <!-- Navigation -->
