@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserve-form Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="order-form.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Reserve Page</h2>
+
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="FullName" required>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="text" placeholder="Email" required>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-house"></i>
+            <input type="address" placeholder="Address" required>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-building"></i>
+            <input type="house" placeholder="House no. or Appartment no." required>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-phone"></i>
+            <input type="phone" placeholder="Phone no." required>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-chair"></i>
+            <input type="number" id="quantity-field" placeholder="Quantity" value="2" min="2" required readonly>
+        </div>
+
+        <a href=""><button class="btn order">Reserve Seats</button></a>
+        <br>
+        <a href=""><button id="can" class="btn order">Cancel</button></a>
+    </div>
+
+    <script>
+        // Get quantity from localStorage if set by ORDER--.html
+        window.onload = function() {
+            const quantityField = document.getElementById('quantity-field');
+            const savedQuantity = localStorage.getItem('orderQuantity');
+            if (savedQuantity) {
+                quantityField.value = savedQuantity;
+            }
+        }
+    </script>
+</body>
+</html>

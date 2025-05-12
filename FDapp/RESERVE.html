@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Example</title>
+    <!-- Link to Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            color: white;
+            background-color: #121212;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            border: none;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 24px;
+            background-color: #1e1e1e;
+        }
+        .navbar .logo {
+            color: #e23744;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .navbar .nav-links a:hover {
+            color: #007BFF;
+        }
+        .navbar .nav-links .new {
+            color: #FF0000;
+            font-weight: bold;
+        }
+
+        .image-gal {
+            display: flex;
+            justify-content: center;
+            /* height: 100vh; */
+            background-color: black;
+        }
+        .image-gal > div {
+            height: 400px;
+            margin: 4.2px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+        /* large image  */
+        #i1 {
+            background: url('pizza.jpg') no-repeat center center/cover;
+            width: 1185px;
+            cursor: pointer;
+        }
+
+        /* small images */
+        #R1 {
+            background: url('pizza2.jpg') no-repeat center center/cover;
+            cursor: pointer;
+        }
+
+        #R2 {
+            background: url('pizza2.jpg') no-repeat center center/cover;
+            cursor: pointer;
+        }
+
+        /* view gallery */
+        .view-gallery {
+            background: url('pizza1.jpg') no-repeat center center/cover;
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            font-weight: lighter;
+            color: white;
+            cursor: pointer;
+        }
+
+        .view-gallery:hover {
+            opacity: 80%;
+            color: rgb(205, 205, 202);
+        }
+
+        
+        #i1:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .i2 {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .i2s {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            
+        }
+
+        .i2s:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .item-content {
+            padding: 20px;
+            /* font-family: Okra, Helvetica, sans-serif; */
+            /* text-align: center; */
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .heading .rater1, .heading .rater2 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .contain {
+            display: flex;
+            gap: 20px;
+        }
+
+        .rating {
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+            background-color: #24963f;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        .rate {
+            color: #9e9e9e;
+        }
+
+        .main {
+            color: #e0e0e0;
+            margin-left: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            font-size: 20px;
+        }
+
+        .price {
+            font-family: monospace;
+            font-size: 24px;
+            color: #24963f;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .buttons button {
+            width: 300px;
+            padding: 20px 20px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 4px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2d2d2d;
+            border: 1px solid #333;
+        }
+
+        .buttons a {
+            text-decoration: none;
+        }
+
+        .buttons .order-now {
+            background-color: #e23744;
+        }
+        .buttons .add-to-cart {
+            background-color: #1577e0;
+        }
+
+        .buttons .order-now:hover {
+            background-color: #c62d39;
+        }
+        .buttons .add-to-cart:hover {
+            background-color: #0056b3;
+        }
+
+        .buttons .custom-now {
+            background-color: #24963f;
+        }
+        .buttons .custom-now:hover {
+            background-color: #1e7a33;
+        }
+
+        .delivery-info {
+            font-size: 18px;
+            color: #9e9e9e;
+            margin-top: 10px;
+        }
+
+        .quantity-counter {
+            margin-left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #2d2d2d;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .quantity-counter button {
+            width: 30px !important;
+            height: 30px;
+            padding: 0 !important;
+            background-color: #3d3d3d;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        .quantity-counter span {
+            color: white;
+            font-size: 18px;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .heading h1 {
+            font-family: sans-serif;
+            font-size: 36px;
+            margin: 0;
+            color: #e0e0e0;
+        }
+
+        .main p {
+            font-family: Okra, Helvetica, sans-serif;
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: #9e9e9e;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">BiteRush</div>
+        <div class="nav-links">
+            <a href="#"><i class="fas fa-building"></i> Corporate</a>
+            <a href="#"><i class="fas fa-search"></i> Search</a>
+            <a href="#"><i class="fas fa-tags"></i> Offers <span class="new">NEW</span></a>
+            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+            <a href="2_a_REGISTER.html"><i class="fas fa-user"></i> Sign In</a>
+            <a href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
+        </div>
+    </div>
+    <div class="image-gal">
+        <div id="i1" ></div>
+        <div class="i2">
+            <div id="R1" class="i2s" ></div>
+            <div id="R2" class="i2s" ></div>
+        </div>
+        <div class="view-gallery">View Gallery</div>
+    </div>
+
+    <div class="item-content">
+
+        <div class="heading">
+            <h1>70 MM Dining Restaurant</h1>
+            <div class="contain">
+                <div class="rater1">
+                    <div class="rating">4.2 ★</div>
+                    <div class="rate">Food Ratings</div>
+                </div>
+                <div class="rater2">
+                    <div class="rating">4.5 ★</div>
+                    <div class="rate">Delivery Ratings</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <p>A classic favorite with a crispy crust, rich tomato sauce, and melted mozzarella cheese. Simple, delicious, and always satisfying.</p>
+            <span class="price">Price: ₹99.99 <span style="color: #e11414;">(50% off)</span></span>
+            <!-- <span class="delivery-info">Delivery in 30-45 minutes</span> -->
+        </div>
+    </div>
+
+    <div class="buttons">
+        <a href=""><button class="add-to-cart"><i class="fas fa-shopping-cart"></i>&nbsp; Add to Cart</button></a>
+        <a href="reserve-form.html"><button class="order-now"><i class="fas fa-utensils"></i>&nbsp; Reserve</button></a>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="quantity-counter">
+                <button onclick="decrementQuantity()">-</button>
+                <span id="quantity">2</span>
+                <button onclick="incrementQuantity()">+</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function incrementQuantity() {
+            const quantityElement = document.getElementById('quantity');
+            let quantity = parseInt(quantityElement.textContent);
+            quantityElement.textContent = quantity + 1;
+        }
+
+        function decrementQuantity() {
+            const quantityElement = document.getElementById('quantity');
+            let quantity = parseInt(quantityElement.textContent);
+            if (quantity > 1) {
+                quantityElement.textContent = quantity - 1;
+            }
+        }
+    </script>
+</body>
+</html>
