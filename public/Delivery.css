@@ -136,12 +136,12 @@ input {
     color: #e0e0e0;
 }
 .inspiration-item img {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 8px;
-    border: 1.5px solid #333;
+    cursor: pointer;
 }
 
 .top-brands {
@@ -166,12 +166,13 @@ input {
     min-width: 90px;
 }
 .brand-item img {
-    width: 60px;
-    height: 60px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 8px;
     border: 1.5px solid #333;
+    cursor: pointer;
 }
 
 .restaurants {
